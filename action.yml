@@ -1,11 +1,15 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'AWS SSM Parameter Store GetParameters Action'
+description: 'A GitHub action centered on AWS Systems Manager Parameter Store GetParameters call, and placing the results into environment variables'
+author: 'Derek Kershner'
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    parameterPairs:
+        required: true
+        description: 'The parameters you would like to retrieve, in pair format with an equal in between and comma delimited. The parameter name is the key, and the environment variable name is the value.'
+    withDecryption:
+        required: false
+        description: 'Whether to decrypt SecretString SSM parameters. Defaults to true.'
+        default: 'true'
+
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+    using: 'node12'
+    main: 'dist/index.js'
