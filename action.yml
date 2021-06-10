@@ -1,5 +1,5 @@
 name: 'AWS SSM Parameter Store GetParameters Action'
-description: 'A GitHub action centered on AWS Systems Manager Parameter Store GetParameters call, and placing the results into environment variables'
+description: 'A GitHub action for AWS Systems Manager Parameter Store GetParameters call and placing the results into environment variables'
 author: 'Derek Kershner'
 inputs:
     parameterPairs:
