@@ -1,6 +1,8 @@
 # AWS SSM Parameter Store GetParameters Action
 
-A GitHub action centered on AWS Systems Manager Parameter Store GetParameters call, and placing the results into environment variables
+A GitHub action centered on AWS Systems Manager Parameter Store GetParameters call, and placing the results into environment variables.
+
+This action is optimized to use the least possible number of API calls to Parameter Store, to avoid the low rate limits.
 
 ## Usage
 
