@@ -1,6 +1,6 @@
 {
     "name": "aws-ssm-getparameters-action",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "private": true,
     "description": "A GitHub action centered on AWS Systems Manager Parameter Store GetParameters call, and placing the results into environment variables",
     "main": "lib/main.js",

@@ -86,11 +86,11 @@ const validateParams = () => {
     const parameterPairsParam = core_1.getInput('parameterPairs', { required: true });
     const parameterPairsStrings = parameterPairsParam.split(',');
     const parameterPairs = parameterPairsStrings.map((parameterPairString) => {
-        const parameterPair = parameterPairString.split('=');
+        const parameterPair = parameterPairString.trim().split('=');
         if (parameterPair.length < 2) {
             throw new Error('Incorrectly formatted parameter pair, make sure the parameterPairs string is in the format "/ssm/paramName=ENV_VARIABLE_NAME&/ssm/paramName2=ENV_VARIABLE_NAME2"');
         }
-        return parameterPair;
+        return parameterPair.map((parameter) => parameter.trim());
     });
     const withDecryptionParam = core_1.getInput('withDecryption');
     const withDecryption = withDecryptionParam !== 'false';
