@@ -4,13 +4,13 @@ import {
     setSecret,
     exportVariable,
     info,
-} from '@actions/core';
-import chunk from 'lodash.chunk';
+} from "@actions/core";
+import chunk from "lodash.chunk";
 import {
     SSMClient,
     GetParametersCommandInput,
     GetParametersCommand,
-} from '@aws-sdk/client-ssm';
+} from "@aws-sdk/client-ssm";
 
 interface ActionParams {
     parameterPairs: [string, string][];
@@ -18,10 +18,10 @@ interface ActionParams {
 }
 
 const validateParams = (): ActionParams => {
-    const parameterPairsParam = getInput('parameterPairs', { required: true });
-    const parameterPairsStrings = parameterPairsParam.split(',');
+    const parameterPairsParam = getInput("parameterPairs", { required: true });
+    const parameterPairsStrings = parameterPairsParam.split(",");
     const parameterPairs = parameterPairsStrings.map((parameterPairString) => {
-        const parameterPair = parameterPairString.trim().split('=');
+        const parameterPair = parameterPairString.trim().split("=");
         if (parameterPair.length < 2) {
             throw new Error(
                 'Incorrectly formatted parameter pair, make sure the parameterPairs string is in the format "/ssm/paramName=ENV_VARIABLE_NAME&/ssm/paramName2=ENV_VARIABLE_NAME2"'
@@ -33,8 +33,8 @@ const validateParams = (): ActionParams => {
         ];
     });
 
-    const withDecryptionParam = getInput('withDecryption');
-    const withDecryption = withDecryptionParam !== 'false';
+    const withDecryptionParam = getInput("withDecryption");
+    const withDecryption = withDecryptionParam !== "false";
 
     return { parameterPairs, withDecryption };
 };
@@ -96,7 +96,7 @@ const process = async (): Promise<void> => {
         );
     }
 
-    info('Job Complete');
+    info("Job Complete");
 };
 
 export default process;
