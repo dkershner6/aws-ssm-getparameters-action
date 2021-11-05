@@ -65,7 +65,10 @@ const processParameterPairChunk = async (
                 continue;
             }
 
-            setSecret(value);
+            if (withDecryption) {
+                setSecret(value);
+            }
+
             exportVariable(parameterPairs[name], value);
             info(
                 `Env variable ${parameterPairs[name]} set with value from ssm parameterName ${name}`
