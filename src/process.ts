@@ -24,7 +24,7 @@ const validateParams = (): ActionParams => {
         const parameterPair = parameterPairString.trim().split("=");
         if (parameterPair.length < 2) {
             throw new Error(
-                'Incorrectly formatted parameter pair, make sure the parameterPairs string is in the format "/ssm/paramName=ENV_VARIABLE_NAME&/ssm/paramName2=ENV_VARIABLE_NAME2"'
+                'Incorrectly formatted parameter pair, make sure the parameterPairs string is in the format "/ssm/paramName=ENV_VARIABLE_NAME,/ssm/paramName2=ENV_VARIABLE_NAME2"'
             );
         }
         return parameterPair.map((parameter) => parameter.trim()) as [
