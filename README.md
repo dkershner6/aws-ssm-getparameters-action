@@ -23,5 +23,5 @@ This action is optimized to use the least possible number of API calls to Parame
           /accountAlias = AWS_ACCOUNT_ALIAS"
       # The part before equals is the ssm parameterName, and after is the ENV Variable name for the workflow.
       # No limit on number of parameters. You can put new lines and spaces in as desired, they get trimmed out.
-      withDecryption: "true" # defaults to true
+      withDecryption: "true" # defaults to true, but only use for SecureString parameters
 ```
