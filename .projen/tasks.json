@@ -78,7 +78,7 @@
       "description": "Only compile",
       "steps": [
         {
-          "exec": "tsc --build"
+          "exec": "tsc --build tsconfig.publish.json"
         }
       ]
     },
@@ -87,7 +87,16 @@
       "description": "Synthesize project files",
       "steps": [
         {
-          "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
+          "exec": "ts-node --project tsconfig.json .projenrc.ts"
+        }
+      ]
+    },
+    "docgen": {
+      "name": "docgen",
+      "description": "Generate TypeScript API reference docs/",
+      "steps": [
+        {
+          "exec": "typedoc src --disableSources --out docs/"
         }
       ]
     },
@@ -130,6 +139,15 @@
         }
       ]
     },
+    "lint": {
+      "name": "lint",
+      "description": "Alternate lint command",
+      "steps": [
+        {
+          "spawn": "eslint"
+        }
+      ]
+    },
     "package": {
       "name": "package",
       "description": "Creates the distribution package",
@@ -141,7 +159,12 @@
     },
     "post-compile": {
       "name": "post-compile",
-      "description": "Runs after successful compilation"
+      "description": "Runs after successful compilation",
+      "steps": [
+        {
+          "spawn": "docgen"
+        }
+      ]
     },
     "post-upgrade": {
       "name": "post-upgrade",
@@ -155,7 +178,8 @@
       "name": "release",
       "description": "Prepare a release from \"main\" branch",
       "env": {
-        "RELEASE": "true"
+        "RELEASE": "true",
+        "MAJOR": "2"
       },
       "steps": [
         {
@@ -180,7 +204,7 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --updateSnapshot",
+          "exec": "jest --passWithNoTests --coverageProvider=v8 --updateSnapshot",
           "receiveArgs": true
         },
         {
@@ -194,6 +218,14 @@
       "steps": [
         {
           "exec": "jest --watch"
+        }
+      ]
+    },
+    "type-check": {
+      "name": "type-check",
+      "steps": [
+        {
+          "exec": "tsc --noEmit"
         }
       ]
     },
@@ -221,13 +253,13 @@
       },
       "steps": [
         {
-          "exec": "pnpx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vercel/ncc,constructs,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest,jest-junit,projen,projen-github-action-typescript,standard-version,ts-jest,ts-node,typescript,@actions/core,@actions/github"
+          "exec": "pnpx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,@types/lodash.chunk,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vercel/ncc,constructs,dkershner6-projen-github-actions,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jest,eslint-plugin-prettier,eslint-plugin-sonarjs,eslint,jest,jest-junit,prettier,projen,projen-github-action-typescript,projen-nvm,standard-version,ts-jest,ts-node,typedoc,typescript,@actions/core,@actions/github,@aws-sdk/client-ssm,lodash.chunk"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vercel/ncc constructs eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit projen projen-github-action-typescript standard-version ts-jest ts-node typescript @actions/core @actions/github"
+          "exec": "pnpm update @types/jest @types/lodash.chunk @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vercel/ncc constructs dkershner6-projen-github-actions eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-jest eslint-plugin-prettier eslint-plugin-sonarjs eslint jest jest-junit prettier projen projen-github-action-typescript projen-nvm standard-version ts-jest ts-node typedoc typescript @actions/core @actions/github @aws-sdk/client-ssm lodash.chunk"
         },
         {
           "exec": "npx projen"

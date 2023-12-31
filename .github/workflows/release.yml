@@ -27,7 +27,11 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: "7"
+          version: "8"
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.10.0
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
       - name: release
@@ -45,6 +49,25 @@ jobs:
         with:
           name: build-artifact
           path: dist
+  major-release:
+    needs: release_github
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          force_push_tag: true
+          tag: v2
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          generateReleaseNotes: true
+          tag: v2
+          token: ${{ secrets.GITHUB_TOKEN }}
   release_github:
     name: Publish to GitHub Releases
     needs: release
@@ -55,7 +78,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.10.0
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:

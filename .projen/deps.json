@@ -5,6 +5,10 @@
       "type": "build"
     },
     {
+      "name": "@types/lodash.chunk",
+      "type": "build"
+    },
+    {
       "name": "@types/node",
       "version": "^18",
       "type": "build"
@@ -29,11 +33,31 @@
       "type": "build"
     },
     {
+      "name": "dkershner6-projen-github-actions",
+      "type": "build"
+    },
+    {
+      "name": "eslint-config-prettier",
+      "type": "build"
+    },
+    {
       "name": "eslint-import-resolver-typescript",
       "type": "build"
     },
     {
       "name": "eslint-plugin-import",
+      "type": "build"
+    },
+    {
+      "name": "eslint-plugin-jest",
+      "type": "build"
+    },
+    {
+      "name": "eslint-plugin-prettier",
+      "type": "build"
+    },
+    {
+      "name": "eslint-plugin-sonarjs",
       "type": "build"
     },
     {
@@ -51,11 +75,19 @@
       "type": "build"
     },
     {
+      "name": "prettier",
+      "type": "build"
+    },
+    {
       "name": "projen",
       "type": "build"
     },
     {
       "name": "projen-github-action-typescript",
+      "type": "build"
+    },
+    {
+      "name": "projen-nvm",
       "type": "build"
     },
     {
@@ -72,6 +104,10 @@
       "type": "build"
     },
     {
+      "name": "typedoc",
+      "type": "build"
+    },
+    {
       "name": "typescript",
       "type": "build"
     },
@@ -81,6 +117,14 @@
     },
     {
       "name": "@actions/github",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/client-ssm",
+      "type": "runtime"
+    },
+    {
+      "name": "lodash.chunk",
       "type": "runtime"
     }
   ],
