@@ -5,12 +5,12 @@ import {
     exportVariable,
     info,
 } from "@actions/core";
-import chunk from "lodash.chunk";
 import {
     SSMClient,
     GetParametersCommandInput,
     GetParametersCommand,
 } from "@aws-sdk/client-ssm";
+import chunk from "lodash.chunk";
 
 interface ActionParams {
     parameterPairs: [string, string][];
@@ -24,12 +24,12 @@ const validateParams = (): ActionParams => {
         const parameterPair = parameterPairString.trim().split("=");
         if (parameterPair.length < 2) {
             throw new Error(
-                'Incorrectly formatted parameter pair, make sure the parameterPairs string is in the format "/ssm/paramName=ENV_VARIABLE_NAME,/ssm/paramName2=ENV_VARIABLE_NAME2"'
+                'Incorrectly formatted parameter pair, make sure the parameterPairs string is in the format "/ssm/paramName=ENV_VARIABLE_NAME,/ssm/paramName2=ENV_VARIABLE_NAME2"',
             );
         }
         return parameterPair.map((parameter) => parameter.trim()) as [
             string,
-            string
+            string,
         ];
     });
 
@@ -42,7 +42,7 @@ const validateParams = (): ActionParams => {
 const processParameterPairChunk = async (
     client: SSMClient,
     parameterPairChunk: [string, string][],
-    withDecryption: boolean
+    withDecryption: boolean,
 ): Promise<void> => {
     const parameterPairs = Object.fromEntries(parameterPairChunk);
 
@@ -71,7 +71,7 @@ const processParameterPairChunk = async (
 
             exportVariable(parameterPairs[name], value);
             info(
-                `Env variable ${parameterPairs[name]} set with value from ssm parameterName ${name}`
+                `Env variable ${parameterPairs[name]} set with value from ssm parameterName ${name}`,
             );
         }
     }
@@ -85,7 +85,7 @@ const process = async (): Promise<void> => {
 
     const parameterPairChunks = chunk(
         parameterPairs,
-        MAX_SSM_GETPARAMETERS_COUNT
+        MAX_SSM_GETPARAMETERS_COUNT,
     );
     info(`${parameterPairChunks.length} chunks of parameters to retrieve`);
 
@@ -95,7 +95,7 @@ const process = async (): Promise<void> => {
         await processParameterPairChunk(
             client,
             parameterPairChunk,
-            withDecryption
+            withDecryption,
         );
     }
 

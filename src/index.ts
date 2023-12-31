@@ -5,8 +5,8 @@ async function run(): Promise<void> {
     try {
         await process();
     } catch (error) {
-        setFailed(error.message);
+        setFailed((error as Error)?.message);
     }
 }
 
-run();
+void run();
