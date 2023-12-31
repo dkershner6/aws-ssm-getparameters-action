@@ -22,7 +22,7 @@ const project = new Node20GitHubActionTypescriptProject({
     actionMetadata: {
         name: "AWS SSM Parameter Store GetParameters Action",
         description:
-            "A GitHub action centered on AWS Systems Manager Parameter Store GetParameters call, and placing the results into environment variables",
+            "AWS Systems Manager Parameter Store GetParameters call, including placing the results into environment variables",
         inputs: {
             parameterPairs: {
                 required: true,
