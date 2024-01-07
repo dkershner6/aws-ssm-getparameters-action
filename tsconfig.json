@@ -25,13 +25,14 @@
     "stripInternal": true,
     "target": "es2022",
     "skipLibCheck": true,
+    "noImplicitOverride": true,
+    "forceConsistentCasingInFileNames": true,
     "types": [
       "jest",
       "node"
     ]
   },
   "include": [
-    ".projenrc.js",
     "src/**/*.ts",
     "test/**/*.ts",
     "src/**/__tests__/**/*",

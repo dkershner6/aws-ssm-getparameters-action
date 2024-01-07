@@ -73,11 +73,25 @@
     ],
     "import/no-unresolved": "off",
     "import/order": [
-      "warn",
+      "error",
       {
         "groups": [
           "builtin",
-          "external"
+          "external",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "react"
         ],
         "alphabetize": {
           "order": "asc",
