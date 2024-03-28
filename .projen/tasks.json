@@ -41,11 +41,28 @@
       ],
       "condition": "! git log --oneline -1 | grep -q \"chore(release):\""
     },
+    "check-updates": {
+      "name": "check-updates",
+      "steps": [
+        {
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/clone-deep,@types/jest,@types/lodash.chunk,@vercel/ncc,clone-deep,dkershner6-projen-github-actions,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jest,eslint-plugin-prettier,eslint-plugin-sonarjs,jest,prettier,projen-github-action-typescript,projen-nvm,ts-jest,ts-node,typedoc,typescript,@actions/core,@actions/github,@aws-sdk/client-ssm,lodash.chunk"
+        }
+      ]
+    },
     "ci": {
       "name": "ci",
       "steps": [
         {
           "spawn": "install:ci"
+        }
+      ]
+    },
+    "clean-compile": {
+      "name": "clean-compile",
+      "description": "Clean up the compiled output",
+      "steps": [
+        {
+          "exec": "rm -rf lib && rm -rf dist"
         }
       ]
     },
@@ -106,7 +123,8 @@
         {
           "exec": "typedoc src --disableSources --out docs/"
         }
-      ]
+      ],
+      "condition": "if [ \"$RELEASE\" = \"true\" ] ; then exit 1 ; fi"
     },
     "eject": {
       "name": "eject",
@@ -126,11 +144,10 @@
       "steps": [
         {
           "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern $@ src test build-tools projenrc .projenrc.ts",
-          "args": [
-            "--max-warnings=0"
-          ]
+          "receiveArgs": true
         }
-      ]
+      ],
+      "condition": "if [ \"$RELEASE\" = \"true\" ] ; then exit 1 ; fi"
     },
     "i": {
       "name": "i",
@@ -165,7 +182,8 @@
         {
           "spawn": "eslint"
         }
-      ]
+      ],
+      "condition": "if [ \"$RELEASE\" = \"true\" ] ; then exit 1 ; fi"
     },
     "package": {
       "name": "package",
@@ -240,7 +258,8 @@
           "exec": "jest --passWithNoTests --coverageProvider=v8 --updateSnapshot",
           "receiveArgs": true
         }
-      ]
+      ],
+      "condition": "if [ \"$RELEASE\" = \"true\" ] ; then exit 1 ; fi"
     },
     "test:watch": {
       "name": "test:watch",
@@ -283,13 +302,13 @@
       },
       "steps": [
         {
-          "exec": "pnpx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/clone-deep,@types/jest,@types/lodash.chunk,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vercel/ncc,clone-deep,constructs,dkershner6-projen-github-actions,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jest,eslint-plugin-prettier,eslint-plugin-sonarjs,eslint,jest,jest-junit,prettier,projen,projen-github-action-typescript,projen-nvm,standard-version,ts-jest,ts-node,typedoc,typescript,@actions/core,@actions/github,@aws-sdk/client-ssm,lodash.chunk"
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/clone-deep,@types/jest,@types/lodash.chunk,@vercel/ncc,clone-deep,dkershner6-projen-github-actions,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jest,eslint-plugin-prettier,eslint-plugin-sonarjs,jest,prettier,projen-github-action-typescript,projen-nvm,ts-jest,ts-node,typedoc,typescript,@actions/core,@actions/github,@aws-sdk/client-ssm,lodash.chunk"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @types/clone-deep @types/jest @types/lodash.chunk @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vercel/ncc clone-deep constructs dkershner6-projen-github-actions eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-jest eslint-plugin-prettier eslint-plugin-sonarjs eslint jest jest-junit prettier projen projen-github-action-typescript projen-nvm standard-version ts-jest ts-node typedoc typescript @actions/core @actions/github @aws-sdk/client-ssm lodash.chunk"
+          "exec": "pnpm update @types/clone-deep @types/jest @types/lodash.chunk @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vercel/ncc clone-deep constructs dkershner6-projen-github-actions eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-jest eslint-plugin-prettier eslint-plugin-sonarjs eslint jest jest-junit prettier projen-github-action-typescript projen-nvm projen standard-version ts-jest ts-node typedoc typescript @actions/core @actions/github @aws-sdk/client-ssm lodash.chunk"
         },
         {
           "exec": "npx projen"

@@ -49,5 +49,6 @@ junit.xml
 !/.eslintrc.json
 !/dist/
 !/action.yml
+.DS_Store
 !/.nvmrc
 !/.projenrc.ts

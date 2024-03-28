@@ -22,5 +22,13 @@ dist
 /.projenrc.js
 tsconfig.tsbuildinfo
 /.eslintrc.json
+.DS_Store
+/project.json
+/docs/
+**/*.md
+/.jest/
+/CONTRIBUTING.md
+/README.md
+/LICENSE
 /.gitattributes
 /.projenrc.ts

@@ -21,6 +21,7 @@
 /.projen/tasks.json linguist-generated
 /action.yml linguist-generated
 /dist/** linguist-generated
+/docs/** linguist-generated
 /LICENSE linguist-generated
 /package.json linguist-generated
 /pnpm-lock.yaml linguist-generated
