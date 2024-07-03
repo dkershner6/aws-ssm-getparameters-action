@@ -14,7 +14,7 @@
     },
     {
       "name": "@types/node",
-      "version": "^18",
+      "version": "^20",
       "type": "build"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "name": "constructs",
-      "version": "^10.0.0",
+      "version": "10.3.0",
       "type": "build"
     },
     {
@@ -87,15 +87,16 @@
       "type": "build"
     },
     {
-      "name": "projen",
-      "type": "build"
-    },
-    {
       "name": "projen-github-action-typescript",
       "type": "build"
     },
     {
       "name": "projen-nvm",
+      "type": "build"
+    },
+    {
+      "name": "projen",
+      "version": "0.82.5",
       "type": "build"
     },
     {
