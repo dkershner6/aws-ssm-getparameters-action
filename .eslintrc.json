@@ -99,9 +99,7 @@
         }
       }
     ],
-    "no-duplicate-imports": [
-      "error"
-    ],
+    "no-duplicate-imports": "off",
     "no-shadow": [
       "off"
     ],
@@ -111,9 +109,7 @@
     "key-spacing": [
       "error"
     ],
-    "no-multiple-empty-lines": [
-      "error"
-    ],
+    "no-multiple-empty-lines": "off",
     "@typescript-eslint/no-floating-promises": [
       "error"
     ],
@@ -121,11 +117,10 @@
       "off"
     ],
     "@typescript-eslint/return-await": [
-      "error"
+      "error",
+      "always"
     ],
-    "no-trailing-spaces": [
-      "error"
-    ],
+    "no-trailing-spaces": "off",
     "dot-notation": [
       "error"
     ],
@@ -149,7 +144,7 @@
       }
     ],
     "no-console": [
-      "warn",
+      "error",
       {
         "allow": [
           "debug",
@@ -160,10 +155,13 @@
       }
     ],
     "import/namespace": "off",
+    "import/no-duplicates": "error",
+    "import/no-named-as-default": "error",
+    "import/no-named-as-default-member": "error",
     "sonarjs/no-redundant-jump": "off",
     "sonarjs/no-small-switch": "warn",
     "@typescript-eslint/explicit-function-return-type": [
-      "warn",
+      "error",
       {
         "allowExpressions": true,
         "allowTypedFunctionExpressions": true,
@@ -173,13 +171,31 @@
       }
     ],
     "@typescript-eslint/no-unused-vars": [
-      "warn",
+      "error",
       {
         "ignoreRestSiblings": true
       }
     ]
   },
   "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "excludedFiles": [
+        "**/app/**",
+        "**/app/**",
+        "**/pages/**",
+        "**/pages/**",
+        "**/.storybook/**",
+        "*.stories.ts",
+        "*.stories.tsx"
+      ],
+      "rules": {
+        "import/no-default-export": "warn"
+      }
+    },
     {
       "files": [
         "*.js",
