@@ -17,8 +17,9 @@ This action is optimized to use the least possible number of API calls to Parame
 
 - uses: dkershner6/aws-ssm-getparameters-action@v2
   with:
-      parameterPairs: "/region/primary = PRIMARY_AWS_REGION,
-          /accountAlias = AWS_ACCOUNT_ALIAS"
+      parameterPairs: |
+          /region/primary = PRIMARY_AWS_REGION,
+          /accountAlias = AWS_ACCOUNT_ALIAS
       # The part before equals is the ssm parameterName, and after is the ENV Variable name for the workflow.
       # No limit on number of parameters. You can put new lines and spaces in as desired, they get trimmed out.
       withDecryption: "true" # defaults to true
